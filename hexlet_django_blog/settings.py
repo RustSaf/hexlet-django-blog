@@ -10,7 +10,30 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+from dotenv import dotenv_values
+
+
+config = dotenv_values(".env")  # config = {"USER": "foo", "EMAIL": "foo@example.org"}
+load_dotenv()  # take environment variables from .env.
+
+# print(dict(config)['ALLOWED_HOSTS'])
+# print(dict(config)['DEBUG'])
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG')
+# DEBUG = os.environ['DEBUG']
+# DEBUG = bool(dict(config)['DEBUG'])
+# ALLOWED_HOSTS = list(dict(config)['ALLOWED_HOSTS'])
+# DEBUG = False
+ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
+LANGUAGE_CODE = os.getenv('LANGUAGE_CODE')
+TIME_ZONE = os.getenv('TIME_ZONE')
+USE_I18N = os.getenv('USE_I18N')
+USE_TZ = os.getenv('USE_TZ')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,13 +42,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-uhn)b$&&v5@&fm8+j_(u)(#46$lv6230^-$j!hzq5&*)6@i$)6"
+# SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,7 +62,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'hexlet_django_blog',
-    'hexlet_django_blog.articles',
+    'hexlet_django_blog.article',
 ]
 
 MIDDLEWARE = [
@@ -105,13 +129,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+# LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+# TIME_ZONE = "UTC"
 
-USE_I18N = True
+# USE_I18N = True
 
-USE_TZ = True
+# USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
