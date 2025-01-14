@@ -3,19 +3,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block title %}Django на Хекслете{% endblock %}</title>
+  <title>{% block title %}Django на Хекслете{% endblock %}</title>
 </head>
 <body>
 <div id="sidebar">
-    {% block sidebar %}
-        <ul>
-            <li><a href="{% url 'index' %}">Главная</a></li>
-            <li><a href="{% url 'article:index_' %}">Статьи</a></li>
-        </ul>
-    {% endblock %}
+{% block sidebar %}
+  <ul>
+    <li><a href="{% url 'index' %}">Главная</a></li>
+    <li><a href="{% url 'articles:index' %}">Статьи</a></li>
+  </ul>
+{% endblock %}
 </div>
-<div id="content">
-    {% block content %}{% endblock %}
+<div id="article">
+  {% block article %}{% endblock %}
+</div>
+<div id="comment">
+  {% block comments %}{% endblock %}
+</div>
+<div id="article_create">
+    {% block article_create %}{% endblock %}
+  </div>
+<div id="comment_create">
+  {% block comment_create %}{% endblock %}
 </div>
 </body>
 </html>

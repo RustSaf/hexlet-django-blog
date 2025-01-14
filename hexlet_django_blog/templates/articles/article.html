@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block article %}
+<h1>"{{ article.name }}:</h1>
+<h3>{{ article.body }}</h3>
+<h4><a href="{% url 'articles:article_update' article.id %}">Редактировать статью</a></h4>
+<h4><a href="{% url 'articles:comment_create' article.name %}">Прокомментировать</a></h4>
+<form action="{% url 'articles:article_delete' id=article.id %}" 
+method="post"
+align="center"
+onsubmit="return confirm('Удалить статью безвозвратно?')">
+    {% csrf_token %}
+    <input type="submit" value="Удалить статью &quot;{{ article.name }}&quot;, созданную {{ article.created_at }}">
+</form>
+{% endblock %}
+
+{% block comments %}
+<h3>Список комментариев:</h3>
+<ol reversed="True">
+{% for comment in comments %}
+  <li><h4>{{ comment.content }}</h4></li>
+{% endfor %}  
+</ol>
+{% endblock %}
+</div>
